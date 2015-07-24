@@ -96,6 +96,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         // handle scan result
         if (scanResult != null) {
+            // we have a result from the scan, update the fragment with code
             String scanContent = scanResult.getContents();
             FragmentManager fm = getSupportFragmentManager();
 

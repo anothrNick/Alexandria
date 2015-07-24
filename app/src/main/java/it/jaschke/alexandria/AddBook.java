@@ -42,6 +42,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     private String mScanFormat = "Format:";
     private String mScanContents = "Contents:";
 
+    // update barcode
     /*http://androide-examples.blogspot.com/2013/11/zxing-onactivityresult-called-only-in.html*/
     public static AddBook newInstance(String code) {
         Bundle args = new Bundle();
@@ -69,6 +70,8 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
         rootView = inflater.inflate(R.layout.fragment_add_book, container, false);
         ean = (EditText) rootView.findViewById(R.id.ean);
+
+        // if we have some arguments, update the EditText field with the scanned barcode
         if(getArguments() != null)
             ean.setText((String) getArguments().getSerializable(CODE));
 
@@ -221,25 +224,5 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         activity.setTitle(R.string.scan);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-
-        if (scanningResult != null) {
-            //we have a result
-            String scanContent = scanningResult.getContents();
-
-            if(scanContent != null) {
-                Log.d("test", scanContent);
-                ean.setText(scanContent, TextView.BufferType.EDITABLE);
-            }
-        }
-        else{
-            Toast toast = Toast.makeText(getActivity(),
-                    "No scan data received!", Toast.LENGTH_SHORT);
-            toast.show();
-        }
     }
 }
