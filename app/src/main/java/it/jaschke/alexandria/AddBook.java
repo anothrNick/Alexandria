@@ -123,7 +123,12 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
                 */
-                IntentIntegrator.initiateScan(getActivity());
+                try {
+                    IntentIntegrator.initiateScan(getActivity());
+                }
+                catch(Exception e) {
+                    Log.w("AddBook", e.toString());
+                }
             }
         });
 
@@ -141,6 +146,14 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                 bookIntent.putExtra(BookService.EAN, ean.getText().toString());
                 bookIntent.setAction(BookService.DELETE_BOOK);
                 getActivity().startService(bookIntent);
+
+                Context context = getActivity();
+                CharSequence text = bookTitle + " has been removed from your list.";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+
                 ean.setText("");
             }
         });
@@ -176,13 +189,14 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         );
     }
 
+    String bookTitle = "";
     @Override
     public void onLoadFinished(android.support.v4.content.Loader<Cursor> loader, Cursor data) {
         if (!data.moveToFirst()) {
             return;
         }
 
-        String bookTitle = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.TITLE));
+        bookTitle = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.TITLE));
         ((TextView) rootView.findViewById(R.id.bookTitle)).setText(bookTitle);
 
         String bookSubTitle = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.SUBTITLE));
@@ -203,6 +217,14 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
         rootView.findViewById(R.id.save_button).setVisibility(View.VISIBLE);
         rootView.findViewById(R.id.delete_button).setVisibility(View.VISIBLE);
+
+        // tell user that this book has been added to the list as soon as it's found.
+        Context context = getActivity();
+        CharSequence text = bookTitle + " has been added to your list!";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
     }
 
     @Override
