@@ -54,7 +54,7 @@ public class myFetchService extends IntentService
 
         Uri fetch_build = Uri.parse(BASE_URL).buildUpon().
                 appendQueryParameter(QUERY_TIME_FRAME, timeFrame).build();
-        //Log.v(LOG_TAG, fetch_build.toString()); //log spam
+        Log.v(LOG_TAG, fetch_build.toString()); //log spam
         HttpURLConnection m_connection = null;
         BufferedReader reader = null;
         String JSON_data = null;
@@ -70,6 +70,7 @@ public class myFetchService extends IntentService
             InputStream inputStream = m_connection.getInputStream();
             StringBuffer buffer = new StringBuffer();
             if (inputStream == null) {
+                Log.v(LOG_TAG, "null inputStream");
                 // Nothing to do.
                 return;
             }
@@ -82,7 +83,7 @@ public class myFetchService extends IntentService
                 // buffer for debugging.
                 buffer.append(line + "\n");
             }
-
+            Log.v(LOG_TAG, "buffer lines : " + buffer.toString());
             if (buffer.length() == 0) {
                 // Stream was empty.  No point in parsing.
                 return;
@@ -140,6 +141,7 @@ public class myFetchService extends IntentService
         final String CHAMPIONS_LEAGUE = "362";
         final String PRIMERA_DIVISION = "358";
         final String BUNDESLIGA = "351";
+        final String OTHER = "395"; // not getting any data based on the above seasons....getting something else too.
         final String SEASON_LINK = "http://api.football-data.org/alpha/soccerseasons/";
         final String MATCH_LINK = "http://api.football-data.org/alpha/fixtures/";
         final String FIXTURES = "fixtures";
@@ -182,7 +184,8 @@ public class myFetchService extends IntentService
                         League.equals(SERIE_A)             ||
                         League.equals(CHAMPIONS_LEAGUE)    ||
                         League.equals(BUNDESLIGA)          ||
-                        League.equals(PRIMERA_DIVISION)     )
+                        League.equals(PRIMERA_DIVISION)    ||
+                        League.equals(OTHER)        )
                 {
                     match_id = match_data.getJSONObject(LINKS).getJSONObject(SELF).
                             getString("href");
@@ -234,13 +237,13 @@ public class myFetchService extends IntentService
                     match_values.put(DatabaseContract.scores_table.MATCH_DAY,match_day);
                     //log spam
 
-                    //Log.v(LOG_TAG,match_id);
-                    //Log.v(LOG_TAG,mDate);
-                    //Log.v(LOG_TAG,mTime);
-                    //Log.v(LOG_TAG,Home);
-                    //Log.v(LOG_TAG,Away);
-                    //Log.v(LOG_TAG,Home_goals);
-                    //Log.v(LOG_TAG,Away_goals);
+                    Log.d(LOG_TAG,match_id);
+                    Log.d(LOG_TAG,mDate);
+                    Log.d(LOG_TAG,mTime);
+                    Log.d(LOG_TAG,Home);
+                    Log.d(LOG_TAG,Away);
+                    Log.d(LOG_TAG,Home_goals);
+                    Log.d(LOG_TAG,Away_goals);
 
                     values.add(match_values);
                 }
@@ -251,7 +254,7 @@ public class myFetchService extends IntentService
             inserted_data = mContext.getContentResolver().bulkInsert(
                     DatabaseContract.BASE_CONTENT_URI,insert_data);
 
-            //Log.v(LOG_TAG,"Succesfully Inserted : " + String.valueOf(inserted_data));
+            Log.v(LOG_TAG,"Succesfully Inserted : " + String.valueOf(inserted_data));
         }
         catch (JSONException e)
         {
