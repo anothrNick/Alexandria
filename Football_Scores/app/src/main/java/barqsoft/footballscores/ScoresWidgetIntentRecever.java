@@ -21,5 +21,7 @@ public class ScoresWidgetIntentRecever extends BroadcastReceiver {
     private void updateWidget(Context context) {
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.scores_widget);
         remoteViews.setTextViewText(R.id.title, "Updated");
+
+        ScoresWidgetProvider.pushWidgetUpdate(context.getApplicationContext(), remoteViews);
     }
 }

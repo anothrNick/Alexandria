@@ -37,7 +37,7 @@
 
         <receiver
             android:label="Football Scores"
-            android:name="ScoresWidgetProvider" >
+            android:name=".ScoresWidgetProvider" >
             <intent-filter >
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
