@@ -13,15 +13,15 @@ public class DatabaseContract
     public static final class scores_table implements BaseColumns
     {
         //Table data
-        public static final String LEAGUE_COL = "league";
-        public static final String DATE_COL = "date";
-        public static final String TIME_COL = "time";
-        public static final String HOME_COL = "home";
-        public static final String AWAY_COL = "away";
-        public static final String HOME_GOALS_COL = "home_goals";
-        public static final String AWAY_GOALS_COL = "away_goals";
-        public static final String MATCH_ID = "match_id";
-        public static final String MATCH_DAY = "match_day";
+        public static final String LEAGUE_COL = "league";//0
+        public static final String DATE_COL = "date";//1
+        public static final String TIME_COL = "time";//2
+        public static final String HOME_COL = "home";//3
+        public static final String AWAY_COL = "away";//4
+        public static final String HOME_GOALS_COL = "home_goals";//5
+        public static final String AWAY_GOALS_COL = "away_goals";//6
+        public static final String MATCH_ID = "match_id";//7
+        public static final String MATCH_DAY = "match_day";//8
 
         //public static Uri SCORES_CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH)
                 //.build();

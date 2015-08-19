@@ -3,83 +3,131 @@
     android:padding="@dimen/widget_margin"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-
     <LinearLayout
-        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="5dp"
-        >
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="fill_parent"
+        android:orientation="vertical" >
+        <LinearLayout
+            android:orientation="horizontal" android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/widget_wrap"
+            android:layout_weight="80"
+            >
+            <RelativeLayout
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:id="@+id/home_crest_widget"
-                android:src="@drawable/liverpool"
-                android:contentDescription="Home Team Logo"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_alignBottom="@+id/home_crest_widget"
-                android:background="#66000000">
-                <TextView
-                    android:id="@+id/home_score_widget"
-                    android:layout_width="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="1"
-                    android:textColor="#FFF"
-                    android:textSize="20sp"
+                    android:orientation="vertical"
+                    android:layout_alignTop="@+id/home_crest_widget"
+                    android:background="#66000000">
+                    <TextView
+                        android:id="@+id/home_team_widget"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFF"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:contentDescription="Home Name"/>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/home_crest_widget"
+                    android:src="@drawable/liverpool"
+                    android:contentDescription="Home Team Logo"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignBottom="@+id/home_crest_widget"
+                    android:background="#66000000">
+                    <TextView
+                        android:id="@+id/home_score_widget"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFF"
+                        android:textSize="20sp"
+                        android:gravity="center"
+                        android:contentDescription="Home Score"/>
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="VS"
+                    android:layout_gravity="center"
                     android:gravity="center"
-                    android:contentDescription="Home Score"/>
-            </LinearLayout>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+                    android:textSize="18sp"
+                    android:textColor="#FFF"
+                    android:id="@+id/vs"
+                    android:contentDescription="Versus"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignTop="@+id/away_crest_widget"
+                    android:background="#66000000">
+                    <TextView
+                        android:id="@+id/away_team_widget"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFF"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:contentDescription="Away Name"/>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/away_crest_widget"
+                    android:src="@drawable/chelsea"
+                    android:contentDescription="Away Team Logo"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignBottom="@+id/away_crest_widget"
+                    android:background="#66000000">
+                    <TextView
+                        android:id="@+id/away_score_widget"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFF"
+                        android:textSize="18sp"
+                        android:gravity="center"
+                        android:contentDescription="Away Score"/>
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical" android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="20"
+            >
             <TextView
+                android:id="@+id/date_widget"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="VS"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textSize="20sp"
-                android:textColor="#FFF"
-                android:id="@+id/vs"
-                android:contentDescription="Versus"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/away_crest_widget"
-                android:src="@drawable/liverpool"
-                android:contentDescription="Away Team Logo"/>
-            <LinearLayout
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_alignBottom="@+id/away_crest_widget"
-                android:background="#66000000">
-                <TextView
-                    android:id="@+id/away_score_widget"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="1"
-                    android:textColor="#FFF"
-                    android:textSize="20sp"
-                    android:gravity="center"
-                    android:contentDescription="Away Score"/>
-            </LinearLayout>
-        </RelativeLayout>
+                android:textColor="#FFF"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:contentDescription="Date"/>
+        </LinearLayout>
     </LinearLayout>
 </FrameLayout>

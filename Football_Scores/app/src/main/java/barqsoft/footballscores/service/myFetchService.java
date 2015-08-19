@@ -167,7 +167,6 @@ public class myFetchService extends IntentService
         String match_id = null;
         String match_day = null;
 
-
         try {
             JSONArray matches = new JSONObject(JSONdata).getJSONArray(FIXTURES);
 

@@ -1,6 +1,7 @@
 package barqsoft.footballscores;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -43,4 +44,5 @@ public class ScoresDBHelper extends SQLiteOpenHelper
         //Remove old values when upgrading.
         db.execSQL("DROP TABLE IF EXISTS " + DatabaseContract.SCORES_TABLE);
     }
+
 }
