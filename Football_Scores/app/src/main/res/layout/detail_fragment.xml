@@ -42,7 +42,7 @@
             android:paddingEnd="120dp"
             android:paddingLeft="120dp"
             android:paddingRight="120dp"
-            android:contentDescription="Share Button"/>
+            android:contentDescription="@string/cd_share_button"/>
     </FrameLayout>
 
 </LinearLayout>

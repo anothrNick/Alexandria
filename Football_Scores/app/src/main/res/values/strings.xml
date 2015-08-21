@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="cd_share_button">Share Button</string>
+    <string name="cd_app_desc">Application Description</string>
+    <string name="cd_hometeam_logo">Home Team Logo</string>
+    <string name="cd_hometeam_name">Home Team Name</string>
+    <string name="cd_awayteam_logo">Away Team Logo</string>
+    <string name="cd_awayteam_name">Away Team Name</string>
+    <string name="cd_score">Score</string>
+    <string name="cd_homescore">Home Score</string>
+    <string name="cd_awayscore">Away Score</string>
+    <string name="cd_data">Data</string>
+    <string name="cd_date">Date</string>
+
+    <string name="vs">VS</string>
+    <string name="versus">Versus</string>
     <string name="app_name">Football Scores</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

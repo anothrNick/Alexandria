@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="12sp"
-        android:contentDescription="Application Description"
+        android:contentDescription="@string/cd_app_desc"
         />
 
 </RelativeLayout>

@@ -31,14 +31,14 @@
                         android:textColor="#FFF"
                         android:textSize="12sp"
                         android:gravity="center"
-                        android:contentDescription="Home Name"/>
+                        android:contentDescription="@string/cd_hometeam_name"/>
                 </LinearLayout>
                 <ImageView
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:id="@+id/home_crest_widget"
                     android:src="@drawable/liverpool"
-                    android:contentDescription="Home Team Logo"/>
+                    android:contentDescription="@string/cd_hometeam_logo"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
                         android:textColor="#FFF"
                         android:textSize="20sp"
                         android:gravity="center"
-                        android:contentDescription="Home Score"/>
+                        android:contentDescription="@string/cd_homescore"/>
                 </LinearLayout>
             </RelativeLayout>
             <RelativeLayout
@@ -63,13 +63,13 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:text="VS"
+                    android:text="@string/vs"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:textSize="18sp"
                     android:textColor="#FFF"
                     android:id="@+id/vs"
-                    android:contentDescription="Versus"/>
+                    android:contentDescription="@string/versus"/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="0dp"
@@ -89,14 +89,14 @@
                         android:textColor="#FFF"
                         android:textSize="12sp"
                         android:gravity="center"
-                        android:contentDescription="Away Name"/>
+                        android:contentDescription="@string/cd_awayteam_name"/>
                 </LinearLayout>
                 <ImageView
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:id="@+id/away_crest_widget"
                     android:src="@drawable/chelsea"
-                    android:contentDescription="Away Team Logo"/>
+                    android:contentDescription="@string/cd_awayteam_logo"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
                         android:textColor="#FFF"
                         android:textSize="18sp"
                         android:gravity="center"
-                        android:contentDescription="Away Score"/>
+                        android:contentDescription="@string/cd_awayscore"/>
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>
@@ -127,7 +127,7 @@
                 android:textColor="#FFF"
                 android:textSize="20sp"
                 android:gravity="center"
-                android:contentDescription="Date"/>
+                android:contentDescription="@string/cd_date"/>
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>
