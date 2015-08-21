@@ -69,10 +69,6 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         rootView = inflater.inflate(R.layout.fragment_add_book, container, false);
         ean = (EditText) rootView.findViewById(R.id.ean);
 
-        // if we have some arguments, update the EditText field with the scanned barcode
-        if(getArguments() != null)
-            ean.setText((String) getArguments().getSerializable(CODE));
-
         ean.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -92,7 +88,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                     ean="978"+ean;
                 }
                 if(ean.length()<13){
-                    clearFields();
+                    //clearFields();
                     return;
                 }
                 //Once we have an ISBN, start a book intent
@@ -103,6 +99,10 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                 AddBook.this.restartLoader();
             }
         });
+
+        // if we have some arguments, update the EditText field with the scanned barcode
+        if(getArguments() != null)
+            ean.setText((String) getArguments().getSerializable(CODE));
 
         rootView.findViewById(R.id.scan_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,19 +140,23 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         rootView.findViewById(R.id.delete_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent bookIntent = new Intent(getActivity(), BookService.class);
-                bookIntent.putExtra(BookService.EAN, ean.getText().toString());
-                bookIntent.setAction(BookService.DELETE_BOOK);
-                getActivity().startService(bookIntent);
+                String isbn = ean.getText().toString();
 
-                Context context = getActivity();
-                CharSequence text = bookTitle + " has been removed from your list.";
-                int duration = Toast.LENGTH_SHORT;
+                if(!isbn.isEmpty()) {
+                    Intent bookIntent = new Intent(getActivity(), BookService.class);
+                    bookIntent.putExtra(BookService.EAN, ean.getText().toString());
+                    bookIntent.setAction(BookService.DELETE_BOOK);
+                    getActivity().startService(bookIntent);
 
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+                    Context context = getActivity();
+                    CharSequence text = bookTitle + " has been removed from your list.";
+                    int duration = Toast.LENGTH_SHORT;
 
-                ean.setText("");
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+
+                    ean.setText("");
+                }
             }
         });
 
@@ -201,9 +205,13 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         ((TextView) rootView.findViewById(R.id.bookSubTitle)).setText(bookSubTitle);
 
         String authors = data.getString(data.getColumnIndex(AlexandriaContract.AuthorEntry.AUTHOR));
-        String[] authorsArr = authors.split(",");
-        ((TextView) rootView.findViewById(R.id.authors)).setLines(authorsArr.length);
-        ((TextView) rootView.findViewById(R.id.authors)).setText(authors.replace(",","\n"));
+
+        if(authors != null) {
+            String[] authorsArr = authors.split(",");
+            ((TextView) rootView.findViewById(R.id.authors)).setLines(authorsArr.length);
+            ((TextView) rootView.findViewById(R.id.authors)).setText(authors.replace(",","\n"));
+        }
+
         String imgUrl = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.IMAGE_URL));
         if(Patterns.WEB_URL.matcher(imgUrl).matches()){
             new DownloadImage((ImageView) rootView.findViewById(R.id.bookCover)).execute(imgUrl);
